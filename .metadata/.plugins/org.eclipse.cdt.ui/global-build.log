@@ -502,3 +502,323 @@ Finished building: default.size.stdout
  
 Finished building: stm32_usb_data.list
  
+19:43:38 **** Incremental Build of configuration Debug for project stm32_usb_data ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xC -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "stm32_usb_data.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\root\Desktop\Projekte\stm32\stm32_usb_data\STM32F401CCUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stm32_usb_data.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: stm32_usb_data.elf
+ 
+arm-none-eabi-size  stm32_usb_data.elf 
+arm-none-eabi-objdump -h -S stm32_usb_data.elf  > "stm32_usb_data.list"
+   text	   data	    bss	    dec	    hex	filename
+  34420	    340	   7148	  41908	   a3b4	stm32_usb_data.elf
+Finished building: default.size.stdout
+ 
+Finished building: stm32_usb_data.list
+ 
+20:29:03 **** Incremental Build of configuration Debug for project stm32_usb_data ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xC -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HMC588L_init':
+../Core/Src/main.c:165:68: warning: passing argument 5 of 'HAL_I2C_Mem_Write' makes pointer from integer without a cast [-Wint-conversion]
+  165 |         HAL_I2C_Mem_Write(&hi2c1, HMC5883L_WRITE_ADDRESS, 0x00, 1, 0x70, 1, 1000);
+      |                                                                    ^~~~
+      |                                                                    |
+      |                                                                    int
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:363,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:570:134: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'int'
+  570 | HAL_StatusTypeDef HAL_I2C_Mem_Write(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                                                                             ~~~~~~~~~^~~~~
+../Core/Src/main.c:166:68: warning: passing argument 5 of 'HAL_I2C_Mem_Write' makes pointer from integer without a cast [-Wint-conversion]
+  166 |         HAL_I2C_Mem_Write(&hi2c1, HMC5883L_WRITE_ADDRESS, 0x01, 1, 0xA0, 1, 1000);
+      |                                                                    ^~~~
+      |                                                                    |
+      |                                                                    int
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:570:134: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'int'
+  570 | HAL_StatusTypeDef HAL_I2C_Mem_Write(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                                                                             ~~~~~~~~~^~~~~
+../Core/Src/main.c: In function 'HMC588L_poll':
+../Core/Src/main.c:180:66: warning: passing argument 5 of 'HAL_I2C_Mem_Read' from incompatible pointer type [-Wincompatible-pointer-types]
+  180 |         HAL_I2C_Mem_Read(&hi2c1, HMC5883L_READ_ADDRESS, 0x00, 1, &polldata, 6, 1000);
+      |                                                                  ^~~~~~~~~
+      |                                                                  |
+      |                                                                  uint8_t (*)[6] {aka unsigned char (*)[6]}
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:571:133: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t (*)[6]' {aka 'unsigned char (*)[6]'}
+  571 | HAL_StatusTypeDef HAL_I2C_Mem_Read(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                                                                            ~~~~~~~~~^~~~~
+arm-none-eabi-gcc -o "stm32_usb_data.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\root\Desktop\Projekte\stm32\stm32_usb_data\STM32F401CCUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stm32_usb_data.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: stm32_usb_data.elf
+ 
+arm-none-eabi-size  stm32_usb_data.elf 
+arm-none-eabi-objdump -h -S stm32_usb_data.elf  > "stm32_usb_data.list"
+   text	   data	    bss	    dec	    hex	filename
+  34420	    340	   7148	  41908	   a3b4	stm32_usb_data.elf
+Finished building: default.size.stdout
+ 
+Finished building: stm32_usb_data.list
+ 
+20:29:24 **** Incremental Build of configuration Debug for project stm32_usb_data ****
+make -j8 all 
+arm-none-eabi-size  stm32_usb_data.elf 
+   text	   data	    bss	    dec	    hex	filename
+  34420	    340	   7148	  41908	   a3b4	stm32_usb_data.elf
+Finished building: default.size.stdout
+ 
+20:34:32 **** Incremental Build of configuration Debug for project stm32_usb_data ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xC -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HMC588L_init':
+../Core/Src/main.c:170:68: warning: passing argument 5 of 'HAL_I2C_Mem_Write' makes pointer from integer without a cast [-Wint-conversion]
+  170 |         HAL_I2C_Mem_Write(&hi2c1, HMC5883L_WRITE_ADDRESS, 0x00, 1, 0x70, 1, 1000);
+      |                                                                    ^~~~
+      |                                                                    |
+      |                                                                    int
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:363,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:570:134: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'int'
+  570 | HAL_StatusTypeDef HAL_I2C_Mem_Write(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                                                                             ~~~~~~~~~^~~~~
+../Core/Src/main.c:171:68: warning: passing argument 5 of 'HAL_I2C_Mem_Write' makes pointer from integer without a cast [-Wint-conversion]
+  171 |         HAL_I2C_Mem_Write(&hi2c1, HMC5883L_WRITE_ADDRESS, 0x01, 1, 0xA0, 1, 1000);
+      |                                                                    ^~~~
+      |                                                                    |
+      |                                                                    int
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:570:134: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'int'
+  570 | HAL_StatusTypeDef HAL_I2C_Mem_Write(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                                                                             ~~~~~~~~~^~~~~
+../Core/Src/main.c: In function 'HMC588L_poll':
+../Core/Src/main.c:183:66: warning: passing argument 5 of 'HAL_I2C_Mem_Read' from incompatible pointer type [-Wincompatible-pointer-types]
+  183 |         HAL_I2C_Mem_Read(&hi2c1, HMC5883L_READ_ADDRESS, 0x00, 1, &polldata, 6, 1000);
+      |                                                                  ^~~~~~~~~
+      |                                                                  |
+      |                                                                  uint8_t (*)[6] {aka unsigned char (*)[6]}
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:571:133: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t (*)[6]' {aka 'unsigned char (*)[6]'}
+  571 | HAL_StatusTypeDef HAL_I2C_Mem_Read(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                                                                            ~~~~~~~~~^~~~~
+arm-none-eabi-gcc -o "stm32_usb_data.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\root\Desktop\Projekte\stm32\stm32_usb_data\STM32F401CCUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stm32_usb_data.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: stm32_usb_data.elf
+ 
+arm-none-eabi-size  stm32_usb_data.elf 
+arm-none-eabi-objdump -h -S stm32_usb_data.elf  > "stm32_usb_data.list"
+   text	   data	    bss	    dec	    hex	filename
+  34420	    340	   7148	  41908	   a3b4	stm32_usb_data.elf
+Finished building: default.size.stdout
+ 
+Finished building: stm32_usb_data.list
+ 
+20:40:53 **** Incremental Build of configuration Debug for project stm32_usb_data ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xC -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HMC588L_init':
+../Core/Src/main.c:174:88: warning: passing argument 5 of 'HAL_I2C_Mem_Write' makes pointer from integer without a cast [-Wint-conversion]
+  174 |         HAL_I2C_Mem_Write(&hi2c1, HMC5883L_WRITE_ADDRESS, Configuration_Register_A, 1, 0x70, 1, 1000);
+      |                                                                                        ^~~~
+      |                                                                                        |
+      |                                                                                        int
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:363,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:570:134: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'int'
+  570 | HAL_StatusTypeDef HAL_I2C_Mem_Write(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                                                                             ~~~~~~~~~^~~~~
+../Core/Src/main.c:175:88: warning: passing argument 5 of 'HAL_I2C_Mem_Write' makes pointer from integer without a cast [-Wint-conversion]
+  175 |         HAL_I2C_Mem_Write(&hi2c1, HMC5883L_WRITE_ADDRESS, Configuration_Register_B, 1, 0xA0, 1, 1000);
+      |                                                                                        ^~~~
+      |                                                                                        |
+      |                                                                                        int
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:570:134: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'int'
+  570 | HAL_StatusTypeDef HAL_I2C_Mem_Write(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                                                                             ~~~~~~~~~^~~~~
+../Core/Src/main.c: In function 'HMC588L_poll':
+../Core/Src/main.c:187:66: warning: passing argument 5 of 'HAL_I2C_Mem_Read' from incompatible pointer type [-Wincompatible-pointer-types]
+  187 |         HAL_I2C_Mem_Read(&hi2c1, HMC5883L_READ_ADDRESS, 0x00, 1, &polldata, 6, 1000);
+      |                                                                  ^~~~~~~~~
+      |                                                                  |
+      |                                                                  uint8_t (*)[6] {aka unsigned char (*)[6]}
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:571:133: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t (*)[6]' {aka 'unsigned char (*)[6]'}
+  571 | HAL_StatusTypeDef HAL_I2C_Mem_Read(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                                                                            ~~~~~~~~~^~~~~
+arm-none-eabi-gcc -o "stm32_usb_data.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\root\Desktop\Projekte\stm32\stm32_usb_data\STM32F401CCUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stm32_usb_data.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: stm32_usb_data.elf
+ 
+arm-none-eabi-size  stm32_usb_data.elf 
+arm-none-eabi-objdump -h -S stm32_usb_data.elf  > "stm32_usb_data.list"
+   text	   data	    bss	    dec	    hex	filename
+  34420	    340	   7148	  41908	   a3b4	stm32_usb_data.elf
+Finished building: default.size.stdout
+ 
+Finished building: stm32_usb_data.list
+ 
+20:43:33 **** Incremental Build of configuration Debug for project stm32_usb_data ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xC -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HMC588L_poll':
+../Core/Src/main.c:188:66: warning: passing argument 5 of 'HAL_I2C_Mem_Read' from incompatible pointer type [-Wincompatible-pointer-types]
+  188 |         HAL_I2C_Mem_Read(&hi2c1, HMC5883L_READ_ADDRESS, 0x00, 1, &polldata, 6, 1000);
+      |                                                                  ^~~~~~~~~
+      |                                                                  |
+      |                                                                  uint8_t (*)[6] {aka unsigned char (*)[6]}
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:363,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:571:133: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t (*)[6]' {aka 'unsigned char (*)[6]'}
+  571 | HAL_StatusTypeDef HAL_I2C_Mem_Read(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                                                                            ~~~~~~~~~^~~~~
+arm-none-eabi-gcc -o "stm32_usb_data.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\root\Desktop\Projekte\stm32\stm32_usb_data\STM32F401CCUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stm32_usb_data.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: stm32_usb_data.elf
+ 
+arm-none-eabi-size  stm32_usb_data.elf 
+arm-none-eabi-objdump -h -S stm32_usb_data.elf  > "stm32_usb_data.list"
+   text	   data	    bss	    dec	    hex	filename
+  34420	    340	   7148	  41908	   a3b4	stm32_usb_data.elf
+Finished building: default.size.stdout
+ 
+Finished building: stm32_usb_data.list
+ 
+20:45:13 **** Incremental Build of configuration Debug for project stm32_usb_data ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xC -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HMC588L_poll':
+../Core/Src/main.c:189:66: warning: passing argument 5 of 'HAL_I2C_Mem_Read' from incompatible pointer type [-Wincompatible-pointer-types]
+  189 |         HAL_I2C_Mem_Read(&hi2c1, HMC5883L_READ_ADDRESS, 0x00, 1, &polldata, 6, 1000);
+      |                                                                  ^~~~~~~~~
+      |                                                                  |
+      |                                                                  uint8_t (*)[6] {aka unsigned char (*)[6]}
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:363,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:571:133: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t (*)[6]' {aka 'unsigned char (*)[6]'}
+  571 | HAL_StatusTypeDef HAL_I2C_Mem_Read(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                                                                            ~~~~~~~~~^~~~~
+arm-none-eabi-gcc -o "stm32_usb_data.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\root\Desktop\Projekte\stm32\stm32_usb_data\STM32F401CCUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stm32_usb_data.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: stm32_usb_data.elf
+ 
+arm-none-eabi-size  stm32_usb_data.elf 
+arm-none-eabi-objdump -h -S stm32_usb_data.elf  > "stm32_usb_data.list"
+   text	   data	    bss	    dec	    hex	filename
+  34420	    340	   7148	  41908	   a3b4	stm32_usb_data.elf
+Finished building: default.size.stdout
+ 
+Finished building: stm32_usb_data.list
+ 
+20:46:01 **** Incremental Build of configuration Debug for project stm32_usb_data ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xC -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "stm32_usb_data.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\root\Desktop\Projekte\stm32\stm32_usb_data\STM32F401CCUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stm32_usb_data.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: stm32_usb_data.elf
+ 
+arm-none-eabi-size  stm32_usb_data.elf 
+arm-none-eabi-objdump -h -S stm32_usb_data.elf  > "stm32_usb_data.list"
+   text	   data	    bss	    dec	    hex	filename
+  34420	    340	   7148	  41908	   a3b4	stm32_usb_data.elf
+Finished building: default.size.stdout
+ 
+Finished building: stm32_usb_data.list
+ 
+20:47:11 **** Incremental Build of configuration Debug for project stm32_usb_data ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xC -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "stm32_usb_data.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\root\Desktop\Projekte\stm32\stm32_usb_data\STM32F401CCUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stm32_usb_data.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: stm32_usb_data.elf
+ 
+arm-none-eabi-size  stm32_usb_data.elf 
+arm-none-eabi-objdump -h -S stm32_usb_data.elf  > "stm32_usb_data.list"
+   text	   data	    bss	    dec	    hex	filename
+  35484	    340	   7148	  42972	   a7dc	stm32_usb_data.elf
+Finished building: default.size.stdout
+ 
+Finished building: stm32_usb_data.list
+ 
+20:50:34 **** Incremental Build of configuration Debug for project stm32_usb_data ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xC -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HMC588L_poll':
+../Core/Src/main.c:192:31: warning: format '%u' expects argument of type 'unsigned int', but argument 3 has type 'uint8_t *' {aka 'unsigned char *'} [-Wformat=]
+  192 |         sprintf(datastring, "%u\n", polldata);
+      |                              ~^     ~~~~~~~~
+      |                               |     |
+      |                               |     uint8_t * {aka unsigned char *}
+      |                               unsigned int
+      |                              %hhn
+arm-none-eabi-gcc -o "stm32_usb_data.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\root\Desktop\Projekte\stm32\stm32_usb_data\STM32F401CCUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stm32_usb_data.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: stm32_usb_data.elf
+ 
+arm-none-eabi-size  stm32_usb_data.elf 
+arm-none-eabi-objdump -h -S stm32_usb_data.elf  > "stm32_usb_data.list"
+   text	   data	    bss	    dec	    hex	filename
+  35484	    340	   7148	  42972	   a7dc	stm32_usb_data.elf
+Finished building: default.size.stdout
+ 
+Finished building: stm32_usb_data.list
+ 
+20:52:20 **** Incremental Build of configuration Debug for project stm32_usb_data ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xC -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "stm32_usb_data.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\root\Desktop\Projekte\stm32\stm32_usb_data\STM32F401CCUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stm32_usb_data.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: stm32_usb_data.elf
+ 
+arm-none-eabi-size  stm32_usb_data.elf 
+arm-none-eabi-objdump -h -S stm32_usb_data.elf  > "stm32_usb_data.list"
+   text	   data	    bss	    dec	    hex	filename
+  35516	    340	   7148	  43004	   a7fc	stm32_usb_data.elf
+Finished building: default.size.stdout
+ 
+Finished building: stm32_usb_data.list
+ 
+20:54:01 **** Incremental Build of configuration Debug for project stm32_usb_data ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xC -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "stm32_usb_data.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\root\Desktop\Projekte\stm32\stm32_usb_data\STM32F401CCUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stm32_usb_data.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: stm32_usb_data.elf
+ 
+arm-none-eabi-size  stm32_usb_data.elf 
+arm-none-eabi-objdump -h -S stm32_usb_data.elf  > "stm32_usb_data.list"
+   text	   data	    bss	    dec	    hex	filename
+  35584	    340	   7148	  43072	   a840	stm32_usb_data.elf
+Finished building: default.size.stdout
+ 
+Finished building: stm32_usb_data.list
+ 
+20:55:35 **** Incremental Build of configuration Debug for project stm32_usb_data ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xC -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "stm32_usb_data.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\root\Desktop\Projekte\stm32\stm32_usb_data\STM32F401CCUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stm32_usb_data.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: stm32_usb_data.elf
+ 
+arm-none-eabi-size  stm32_usb_data.elf 
+arm-none-eabi-objdump -h -S stm32_usb_data.elf  > "stm32_usb_data.list"
+   text	   data	    bss	    dec	    hex	filename
+  35584	    340	   7148	  43072	   a840	stm32_usb_data.elf
+Finished building: default.size.stdout
+ 
+Finished building: stm32_usb_data.list
+ 
+20:57:43 **** Incremental Build of configuration Debug for project stm32_usb_data ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xC -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "stm32_usb_data.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\root\Desktop\Projekte\stm32\stm32_usb_data\STM32F401CCUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stm32_usb_data.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: stm32_usb_data.elf
+ 
+arm-none-eabi-size  stm32_usb_data.elf 
+arm-none-eabi-objdump -h -S stm32_usb_data.elf  > "stm32_usb_data.list"
+   text	   data	    bss	    dec	    hex	filename
+  35588	    340	   7148	  43076	   a844	stm32_usb_data.elf
+Finished building: default.size.stdout
+ 
+Finished building: stm32_usb_data.list
+ 
+20:58:12 **** Incremental Build of configuration Debug for project stm32_usb_data ****
+make -j8 all 
+arm-none-eabi-size  stm32_usb_data.elf 
+   text	   data	    bss	    dec	    hex	filename
+  35588	    340	   7148	  43076	   a844	stm32_usb_data.elf
+Finished building: default.size.stdout
+ 

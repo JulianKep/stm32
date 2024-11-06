@@ -22,8 +22,28 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+
+
+
+
+
+
+
+
+
 #include "string.h"
 #include "usbd_cdc_if.h"
+
+
+
+
+
+
+
+
+
+
+
 
 /* USER CODE END Includes */
 
@@ -60,24 +80,48 @@ static void MX_I2C1_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 #define DS3231_ADDRESS 0xD0
+#define HMC5883L_WRITE_ADDRESS 0x3C
+#define HMC5883L_READ_ADDRESS 0x3D
 
+
+
+//predefinded data (structures)
 char* data = "TEST2\n\r";
-
 uint8_t buffer[64];
 const char* comparestring = "hello";
+uint8_t polldata[6];
 
+
+
+//conversion functions
 uint8_t decToBcd(int val)
 {
   return (uint8_t)( (val/10*16) + (val%10) );
 }
-// Convert binary coded decimal to normal decimal numbers
+
 int bcdToDec(uint8_t val)
 {
   return (int)( (val/16*10) + (val%16) );
 }
 
-//dataclass:
+
+
+
+
 typedef struct {
 
 	uint8_t seconds;
@@ -89,11 +133,8 @@ typedef struct {
 	uint8_t year;
 } TIME;
 
-//instance of dataclass:
 TIME time;
 
-
-/* function to set time */
 
 void Set_Time (uint8_t sec, uint8_t min, uint8_t hour, uint8_t dow, uint8_t dom, uint8_t month, uint8_t year)
 {
@@ -123,6 +164,49 @@ void Get_Time (void)
 }
 
 
+void HMC588L_init (void)
+{
+	//data to be put into registers
+	uint8_t CRA_data = 0x70;
+	uint8_t CRB_data = 0xA0;
+	uint8_t MR_data = 0x00;
+
+	//args: pointer to handle, device address, register address, sizeof register, pointer to data, number of bytes to write, timeoutvariable
+	HAL_I2C_Mem_Write(&hi2c1, HMC5883L_WRITE_ADDRESS, 0x00, 1, &CRA_data, 1, 1000);
+	HAL_I2C_Mem_Write(&hi2c1, HMC5883L_WRITE_ADDRESS, 0x01, 1, &CRB_data, 1, 1000);
+	HAL_I2C_Mem_Write(&hi2c1, HMC5883L_WRITE_ADDRESS, 0x02, 1, &MR_data, 1, 1000);
+	HAL_Delay(100);
+
+}
+
+
+
+void HMC588L_poll (void)
+{
+	uint8_t polldata[6];
+
+	//only poll X, Y
+	HAL_I2C_Mem_Read(&hi2c1, HMC5883L_READ_ADDRESS, 0x00, 1, polldata, 6, 1000);
+
+	char datastring[20];
+	sprintf(datastring, "%02X %02X %02X %02X %02X %02X\n", polldata[0], polldata[1], polldata[2], polldata[3], polldata[4], polldata[5]);
+	CDC_Transmit_FS((uint8_t *)datastring, strlen(datastring));
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* USER CODE END 0 */
 
 /**
@@ -143,6 +227,8 @@ int main(void)
 
   /* USER CODE BEGIN Init */
 
+
+
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -160,36 +246,75 @@ int main(void)
 
 
 
+  HMC588L_init();
+
+
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  HMC588L_init();
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
 
-	  //CDC_Transmit_FS((uint8_t *) data, strlen(data));
-	  HAL_Delay(1000);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	  //check for incoming usb serial data
+	  HAL_Delay(100);
+
+
 	  if(strcmp((char*)buffer, comparestring)==0){
 		  CDC_Transmit_FS((uint8_t *) data, strlen(data));
 	  }
 
-	  Get_Time();
 
-	  //convert uint8_t to string first
+	  //poll time from ds3231
+	  Get_Time();
 	  char time_string[20];
 	  sprintf(time_string, "%02d:%02d:%02d\n", time.hour, time.minutes, time.seconds);
-	  CDC_Transmit_FS((uint8_t *) time_string, strlen(time_string));
+	  //CDC_Transmit_FS((uint8_t *) time_string, strlen(time_string));
 
 
-
+	  //poll raw value from ds3231
 	  uint8_t readtest;
 	  HAL_I2C_Mem_Read(&hi2c1, DS3231_ADDRESS, 0x00, 1, &readtest, 1, 1000);
 	  char datastring[20];
 	  sprintf(datastring, "%u\n", readtest);
-	  CDC_Transmit_FS((uint8_t *) datastring, strlen(datastring));
+	  //CDC_Transmit_FS((uint8_t *) datastring, strlen(datastring));
+
+	  //poll from gyro
+	  HMC588L_poll ();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   }
